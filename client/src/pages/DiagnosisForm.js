@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -30,7 +30,7 @@ const DiagnosisForm = () => {
     fetchPatient();
   }, [id]);
 
-  const fetchPatient = async () => {
+  const fetchPatient = useCallback(async () => {
     try {
       const response = await axios.get(`/api/patients/${id}`);
       setPatient(response.data.data);
@@ -40,7 +40,7 @@ const DiagnosisForm = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id, navigate]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -68,7 +68,7 @@ const DiagnosisForm = () => {
     try {
       await axios.post('/api/diagnoses', { patient: id, ...formData });
       toast.success('Diagnosis created successfully');
-      navigate(`/patient/${id}`);
+      navigate('/doctor/dashboard');
     } catch (error) {
       toast.error('Error creating diagnosis');
     } finally {

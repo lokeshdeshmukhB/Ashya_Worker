@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
@@ -17,7 +17,7 @@ const PatientDetails = () => {
     fetchPatientDetails();
   }, [id]);
 
-  const fetchPatientDetails = async () => {
+  const fetchPatientDetails = useCallback(async () => {
     try {
       const patientResponse = await axios.get(`/api/patients/${id}`);
       setPatient(patientResponse.data.data);
@@ -38,7 +38,7 @@ const PatientDetails = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id, navigate]);
 
   const getStatusBadge = (status) => {
     const badges = {
@@ -82,12 +82,12 @@ const PatientDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-6 flex items-center justify-between">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center text-primary-600 hover:text-primary-700"
+            className="flex items-center text-indigo-600 hover:text-indigo-700 font-medium transition-colors"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -249,11 +249,11 @@ const PatientDetails = () => {
 
             {/* Diagnosis */}
             {diagnosis && (
-              <div className="card border-2 border-primary-200">
+              <div className="card border-2 border-indigo-200 bg-gradient-to-br from-white to-indigo-50">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">Diagnosis</h2>
                 
                 <div className="mb-4">
-                  <span className="text-sm text-gray-600 block mb-2">Diagnosis Result</span>
+                  <span className="text-sm text-gray-600 block mb-2 font-semibold">Diagnosis Result</span>
                   <div className={getDiagnosisResultBadge(diagnosis.diagnosisResult)}>
                     {diagnosis.diagnosisResult.replace('_', ' ').toUpperCase()}
                   </div>
@@ -371,30 +371,16 @@ const PatientDetails = () => {
             </div>
 
             {/* Quick Actions */}
-            {user.role === 'doctor' && (
+            {user.role === 'doctor' && !diagnosis && (
               <div className="card">
                 <h3 className="text-lg font-bold text-gray-900 mb-3">Quick Actions</h3>
                 <div className="space-y-2">
-                  {!diagnosis && (
-                    <Link
-                      to={`/patient/${id}/diagnose`}
-                      className="block w-full btn-primary text-center"
-                    >
-                      Create Diagnosis
-                    </Link>
-                  )}
-                  <a
-                    href={`tel:${patient.phone}`}
-                    className="block w-full btn-secondary text-center"
+                  <Link
+                    to={`/patient/${id}/diagnose`}
+                    className="block w-full btn-primary text-center"
                   >
-                    Call Patient
-                  </a>
-                  <a
-                    href={`tel:${patient.recordedBy.phone}`}
-                    className="block w-full btn-secondary text-center"
-                  >
-                    Call Asha Worker
-                  </a>
+                    Create Diagnosis
+                  </Link>
                 </div>
               </div>
             )}

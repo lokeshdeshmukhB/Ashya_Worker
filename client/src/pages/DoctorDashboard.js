@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
@@ -17,7 +17,6 @@ const DoctorDashboard = () => {
     diagnosed: 0
   });
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPatients();
@@ -49,13 +48,13 @@ const DoctorDashboard = () => {
     }
   };
 
-  const filterPatients = () => {
+  const filterPatients = useCallback(() => {
     if (filter === 'all') {
       setFilteredPatients(patients);
     } else {
       setFilteredPatients(patients.filter(p => p.status === filter));
     }
-  };
+  }, [filter, patients]);
 
   const updateStatus = async (patientId, status) => {
     try {
@@ -97,17 +96,17 @@ const DoctorDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Header */}
-      <nav className="bg-white shadow-sm">
+      <nav className="bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <h1 className="text-xl font-bold text-primary-600">Doctor Dashboard</h1>
+            <h1 className="text-xl font-bold text-white">Doctor Dashboard</h1>
             <div className="flex items-center space-x-4">
-              <span className="text-gray-700">Dr. {user.name}</span>
+              <span className="text-white font-medium">Dr. {user.name}</span>
               <button
                 onClick={logout}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-white hover:text-gray-200 font-medium transition-colors"
               >
                 Logout
               </button>
@@ -119,21 +118,21 @@ const DoctorDashboard = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="card bg-gradient-to-br from-blue-500 to-blue-600 text-white">
-            <div className="text-3xl font-bold">{stats.total}</div>
-            <div className="text-blue-100 mt-1">Total Patients</div>
+          <div className="card bg-gradient-to-br from-cyan-500 via-blue-500 to-indigo-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+            <div className="text-4xl font-bold">{stats.total}</div>
+            <div className="text-blue-100 mt-2 font-medium">Total Patients</div>
           </div>
-          <div className="card bg-gradient-to-br from-yellow-500 to-yellow-600 text-white">
-            <div className="text-3xl font-bold">{stats.pending}</div>
-            <div className="text-yellow-100 mt-1">Pending Review</div>
+          <div className="card bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+            <div className="text-4xl font-bold">{stats.pending}</div>
+            <div className="text-orange-100 mt-2 font-medium">Pending Review</div>
           </div>
-          <div className="card bg-gradient-to-br from-purple-500 to-purple-600 text-white">
-            <div className="text-3xl font-bold">{stats.underReview}</div>
-            <div className="text-purple-100 mt-1">Under Review</div>
+          <div className="card bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+            <div className="text-4xl font-bold">{stats.underReview}</div>
+            <div className="text-purple-100 mt-2 font-medium">Under Review</div>
           </div>
-          <div className="card bg-gradient-to-br from-green-500 to-green-600 text-white">
-            <div className="text-3xl font-bold">{stats.diagnosed}</div>
-            <div className="text-green-100 mt-1">Diagnosed</div>
+          <div className="card bg-gradient-to-br from-emerald-500 via-green-500 to-teal-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+            <div className="text-4xl font-bold">{stats.diagnosed}</div>
+            <div className="text-green-100 mt-2 font-medium">Diagnosed</div>
           </div>
         </div>
 
@@ -142,40 +141,40 @@ const DoctorDashboard = () => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilter('all')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
                 filter === 'all'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
               }`}
             >
               All Patients
             </button>
             <button
               onClick={() => setFilter('pending')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
                 filter === 'pending'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
               }`}
             >
               Pending
             </button>
             <button
               onClick={() => setFilter('under_review')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
                 filter === 'under_review'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
               }`}
             >
               Under Review
             </button>
             <button
               onClick={() => setFilter('diagnosed')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
                 filter === 'diagnosed'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
               }`}
             >
               Diagnosed
@@ -258,7 +257,7 @@ const DoctorDashboard = () => {
                     {(patient.status === 'pending' || patient.status === 'under_review') && (
                       <Link
                         to={`/patient/${patient._id}/diagnose`}
-                        className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-center whitespace-nowrap"
+                        className="bg-gradient-to-r from-emerald-600 to-green-600 text-white px-4 py-2 rounded-lg hover:from-emerald-700 hover:to-green-700 transition-all shadow-md hover:shadow-lg text-center whitespace-nowrap"
                       >
                         Diagnose
                       </Link>
