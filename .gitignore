@@ -41,3 +41,17 @@ coverage/
 
 # Misc
 .cache/
+cancerenv/
+venv/
+server/cancerenv/
+__pycache__/
+*.pkl
+*.pth
+*.bin
+
+cancerenv/
+*.pkl
+*.pt
+*.pth
+*.dll
+
