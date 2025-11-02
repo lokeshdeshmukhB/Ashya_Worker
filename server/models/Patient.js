@@ -60,7 +60,20 @@ const patientSchema = new mongoose.Schema({
       type: Date,
       default: Date.now
     },
-    description: String
+    description: String,
+    aiPrediction: {
+      isCancerous: Boolean,
+      confidence: Number,
+      riskLevel: {
+        type: String,
+        enum: ['low', 'medium', 'high']
+      },
+      analyzedAt: Date,
+      analyzedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    }
   }],
   oralExaminationNotes: {
     type: String

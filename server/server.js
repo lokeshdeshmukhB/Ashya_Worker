@@ -57,6 +57,7 @@ app.use('/api/doctors', require('./routes/doctors'));
 app.use('/api/asha-workers', require('./routes/ashaWorkers'));
 app.use('/api/diagnoses', require('./routes/diagnoses'));
 app.use('/api/upload', require('./routes/upload'));
+app.use('/api/oral-cancer', require('./routes/oralCancer'));
 
 // Health check
 app.get('/api/health', (req, res) => {

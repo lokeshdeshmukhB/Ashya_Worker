@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
+import ImageAnalysis from '../components/ImageAnalysis';
 
 const PatientDetails = () => {
   const [patient, setPatient] = useState(null);
@@ -228,18 +229,28 @@ const PatientDetails = () => {
                   <span className="text-sm text-gray-600 block mb-3">Mouth Images</span>
                   <div className="grid md:grid-cols-2 gap-4">
                     {patient.mouthImages.map((image, index) => (
-                      <div key={index} className="relative group">
-                        <img
-                          src={image.url}
-                          alt={`Mouth examination ${index + 1}`}
-                          className="w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                          onClick={() => window.open(image.url, '_blank')}
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all rounded-lg flex items-center justify-center">
-                          <svg className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                          </svg>
+                      <div key={index} className="border-2 border-gray-200 rounded-lg p-3 bg-gray-50">
+                        <div className="relative group mb-2">
+                          <img
+                            src={image.url}
+                            alt={`Mouth examination ${index + 1}`}
+                            className="w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                            onClick={() => window.open(image.url, '_blank')}
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all rounded-lg flex items-center justify-center">
+                            <svg className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                            </svg>
+                          </div>
                         </div>
+                        {user.role === 'doctor' && (
+                          <ImageAnalysis
+                            patientId={patient._id}
+                            imageIndex={index}
+                            image={image}
+                            onAnalysisComplete={fetchPatientDetails}
+                          />
+                        )}
                       </div>
                     ))}
                   </div>

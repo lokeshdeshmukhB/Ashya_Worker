@@ -16,6 +16,7 @@ const DoctorDashboard = () => {
     underReview: 0,
     diagnosed: 0
   });
+  const [activeTab, setActiveTab] = useState('patients');
   const { user, logout } = useAuth();
 
   useEffect(() => {
@@ -181,15 +182,14 @@ const DoctorDashboard = () => {
             </button>
           </div>
         </div>
-
-        {/* Patients List */}
-        <div className="space-y-4">
-          {filteredPatients.length === 0 ? (
-            <div className="card text-center py-12">
-              <p className="text-gray-500 text-lg">No patients found</p>
-            </div>
-          ) : (
-            filteredPatients.map((patient) => (
+        <div className="p-6">
+          <div className="space-y-6">
+              {filteredPatients.length === 0 ? (
+                <div className="card text-center py-12">
+                  <p className="text-gray-500 text-lg">No patients found</p>
+                </div>
+              ) : (
+                filteredPatients.map((patient) => (
               <div key={patient._id} className="card hover:shadow-lg transition-shadow">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -265,8 +265,9 @@ const DoctorDashboard = () => {
                   </div>
                 </div>
               </div>
-            ))
-          )}
+                ))
+              )}
+            </div>
         </div>
       </div>
     </div>
