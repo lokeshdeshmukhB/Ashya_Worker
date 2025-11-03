@@ -22,7 +22,7 @@ function App() {
     <AuthProvider>
       <SocketProvider>
         <Router>
-          <div className="min-h-screen bg-gray-50">
+          <div className="min-h-screen bg-neutral-50">
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />

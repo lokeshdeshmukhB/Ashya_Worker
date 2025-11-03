@@ -561,7 +561,7 @@ const PatientForm = () => {
                   </select>
                 </div>
 
-                <div>
+        {/*        <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Priority Level
                   </label>
@@ -576,7 +576,7 @@ const PatientForm = () => {
                     <option value="high">High</option>
                     <option value="urgent">Urgent</option>
                   </select>
-                </div>
+                </div> */}
               </div>
             </div>
 

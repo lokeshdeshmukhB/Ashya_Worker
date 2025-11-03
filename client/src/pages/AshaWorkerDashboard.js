@@ -80,24 +80,24 @@ const AshaWorkerDashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      <div className="min-h-screen flex items-center justify-center bg-neutral-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary-500"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-neutral-50">
       {/* Header */}
-      <nav className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
+      <nav className="bg-gradient-to-r from-secondary-500 to-secondary-600 shadow-lg border-b-4 border-primary-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <h1 className="text-xl font-bold text-white">Asha Worker Dashboard</h1>
+            <h1 className="text-xl font-bold text-white">👩‍⚕️ Asha Worker Dashboard</h1>
             <div className="flex items-center space-x-4">
-              <span className="text-white font-medium">{user.name}</span>
+              <span className="text-white font-semibold">{user.name}</span>
               <button
                 onClick={logout}
-                className="text-white hover:text-gray-200 font-medium transition-colors"
+                className="text-white hover:text-secondary-100 font-semibold transition-colors"
               >
                 Logout
               </button>
@@ -109,21 +109,21 @@ const AshaWorkerDashboard = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="card bg-gradient-to-br from-cyan-500 via-blue-500 to-indigo-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+          <div className="card bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
             <div className="text-4xl font-bold">{stats.total}</div>
-            <div className="text-blue-100 mt-2 font-medium">Total Records</div>
+            <div className="text-primary-100 mt-2 font-semibold">Total Records</div>
           </div>
-          <div className="card bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+          <div className="card bg-gradient-to-br from-accent-500 to-accent-600 text-gray-900 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
             <div className="text-4xl font-bold">{stats.pending}</div>
-            <div className="text-orange-100 mt-2 font-medium">Pending Review</div>
+            <div className="text-accent-700 mt-2 font-semibold">Pending Review</div>
           </div>
-          <div className="card bg-gradient-to-br from-emerald-500 via-green-500 to-teal-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+          <div className="card bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
             <div className="text-4xl font-bold">{stats.diagnosed}</div>
-            <div className="text-green-100 mt-2 font-medium">Diagnosed</div>
+            <div className="text-green-100 mt-2 font-semibold">Diagnosed</div>
           </div>
-          <div className="card bg-gradient-to-br from-purple-500 via-pink-500 to-rose-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+          <div className="card bg-gradient-to-br from-secondary-500 to-secondary-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
             <div className="text-4xl font-bold">{stats.followUp}</div>
-            <div className="text-purple-100 mt-2 font-medium">Follow-up Required</div>
+            <div className="text-secondary-100 mt-2 font-semibold">Follow-up Required</div>
           </div>
         </div>
 
@@ -145,40 +145,40 @@ const AshaWorkerDashboard = () => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilter('all')}
-              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
+              className={`px-4 py-2 rounded-lg font-semibold transition-all shadow-sm ${
                 filter === 'all'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                  ? 'bg-primary-500 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-neutral-100 border border-neutral-200'
               }`}
             >
               All Records
             </button>
             <button
               onClick={() => setFilter('pending')}
-              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
+              className={`px-4 py-2 rounded-lg font-semibold transition-all shadow-sm ${
                 filter === 'pending'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                  ? 'bg-accent-500 text-gray-900 shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-neutral-100 border border-neutral-200'
               }`}
             >
               Pending
             </button>
             <button
               onClick={() => setFilter('diagnosed')}
-              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
+              className={`px-4 py-2 rounded-lg font-semibold transition-all shadow-sm ${
                 filter === 'diagnosed'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                  ? 'bg-green-500 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-neutral-100 border border-neutral-200'
               }`}
             >
               Diagnosed
             </button>
             <button
               onClick={() => setFilter('follow_up_required')}
-              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
+              className={`px-4 py-2 rounded-lg font-semibold transition-all shadow-sm ${
                 filter === 'follow_up_required'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                  ? 'bg-secondary-500 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-neutral-100 border border-neutral-200'
               }`}
             >
               Follow-up

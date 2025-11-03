@@ -79,10 +79,11 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-secondary-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-neutral-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl w-full">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className="card-elevated border-t-4 border-primary-500">
           <div className="text-center mb-8">
+            <div className="text-4xl mb-3">🏥</div>
             <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
             <p className="mt-2 text-gray-600">Join the oral cancer detection initiative</p>
           </div>
@@ -90,32 +91,32 @@ const Register = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Role Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-3">
                 I am a
               </label>
               <div className="grid grid-cols-2 gap-4">
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, role: 'asha_worker' })}
-                  className={`p-4 border-2 rounded-lg text-center transition-all ${
+                  className={`p-4 border-2 rounded-lg text-center transition-all font-semibold ${
                     formData.role === 'asha_worker'
-                      ? 'border-primary-600 bg-primary-50 text-primary-700'
-                      : 'border-gray-300 hover:border-gray-400'
+                      ? 'border-primary-500 bg-primary-50 text-primary-700'
+                      : 'border-neutral-200 hover:border-primary-300'
                   }`}
                 >
-                  <div className="font-semibold">Asha Worker</div>
+                  <div className="font-semibold">👩‍⚕️ Asha Worker</div>
                   <div className="text-sm text-gray-600">Community Health Worker</div>
                 </button>
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, role: 'doctor' })}
-                  className={`p-4 border-2 rounded-lg text-center transition-all ${
+                  className={`p-4 border-2 rounded-lg text-center transition-all font-semibold ${
                     formData.role === 'doctor'
-                      ? 'border-primary-600 bg-primary-50 text-primary-700'
-                      : 'border-gray-300 hover:border-gray-400'
+                      ? 'border-primary-500 bg-primary-50 text-primary-700'
+                      : 'border-neutral-200 hover:border-primary-300'
                   }`}
                 >
-                  <div className="font-semibold">Doctor</div>
+                  <div className="font-semibold">👨‍⚕️ Doctor</div>
                   <div className="text-sm text-gray-600">Medical Professional</div>
                 </button>
               </div>
@@ -124,7 +125,7 @@ const Register = () => {
             {/* Common Fields */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                   Full Name *
                 </label>
                 <input
@@ -140,7 +141,7 @@ const Register = () => {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
                   Phone Number *
                 </label>
                 <input
@@ -157,7 +158,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                 Email Address *
               </label>
               <input
@@ -174,7 +175,7 @@ const Register = () => {
 
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
                   Password *
                 </label>
                 <input
@@ -190,7 +191,7 @@ const Register = () => {
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2">
                   Confirm Password *
                 </label>
                 <input
@@ -208,11 +209,11 @@ const Register = () => {
 
             {/* Doctor Specific Fields */}
             {formData.role === 'doctor' && (
-              <div className="space-y-4 border-t pt-4">
-                <h3 className="font-semibold text-gray-900">Doctor Information</h3>
+              <div className="space-y-4 border-t-2 border-neutral-200 pt-4">
+                <h3 className="font-semibold text-gray-900 text-primary-600">👨‍⚕️ Doctor Information</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="specialization" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="specialization" className="block text-sm font-semibold text-gray-700 mb-2">
                       Specialization *
                     </label>
                     <input
@@ -228,7 +229,7 @@ const Register = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="licenseNumber" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="licenseNumber" className="block text-sm font-semibold text-gray-700 mb-2">
                       License Number *
                     </label>
                     <input
@@ -245,7 +246,7 @@ const Register = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="hospital" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="hospital" className="block text-sm font-semibold text-gray-700 mb-2">
                     Hospital/Clinic *
                   </label>
                   <input
@@ -264,11 +265,11 @@ const Register = () => {
 
             {/* Asha Worker Specific Fields */}
             {formData.role === 'asha_worker' && (
-              <div className="space-y-4 border-t pt-4">
-                <h3 className="font-semibold text-gray-900">Asha Worker Information</h3>
+              <div className="space-y-4 border-t-2 border-neutral-200 pt-4">
+                <h3 className="font-semibold text-gray-900 text-secondary-600">👩‍⚕️ Asha Worker Information</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="workArea" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="workArea" className="block text-sm font-semibold text-gray-700 mb-2">
                       Work Area *
                     </label>
                     <input
@@ -284,7 +285,7 @@ const Register = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="employeeId" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="employeeId" className="block text-sm font-semibold text-gray-700 mb-2">
                       Employee ID *
                     </label>
                     <input
@@ -305,7 +306,7 @@ const Register = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full btn-primary py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full btn-primary py-3 text-lg"
             >
               {loading ? 'Creating Account...' : 'Create Account'}
             </button>
@@ -314,7 +315,7 @@ const Register = () => {
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               Already have an account?{' '}
-              <Link to="/login" className="text-primary-600 hover:text-primary-700 font-medium">
+              <Link to="/login" className="text-primary-500 hover:text-primary-600 font-semibold">
                 Sign in here
               </Link>
             </p>
@@ -323,7 +324,7 @@ const Register = () => {
           <div className="mt-6">
             <Link
               to="/"
-              className="flex items-center justify-center text-gray-600 hover:text-gray-900"
+              className="flex items-center justify-center text-gray-600 hover:text-primary-500 transition-colors font-medium"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

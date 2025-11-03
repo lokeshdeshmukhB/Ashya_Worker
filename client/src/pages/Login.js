@@ -40,17 +40,18 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-secondary-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-neutral-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className="card-elevated border-t-4 border-primary-500">
           <div className="text-center mb-8">
+            <div className="text-4xl mb-3">🏥</div>
             <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
             <p className="mt-2 text-gray-600">Sign in to your account</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                 Email Address
               </label>
               <input
@@ -66,7 +67,7 @@ const Login = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
                 Password
               </label>
               <input
@@ -84,7 +85,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full btn-primary py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full btn-primary py-3 text-lg"
             >
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
@@ -93,7 +94,7 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               Don't have an account?{' '}
-              <Link to="/register" className="text-primary-600 hover:text-primary-700 font-medium">
+              <Link to="/register" className="text-primary-500 hover:text-primary-600 font-semibold">
                 Register here
               </Link>
             </p>
@@ -102,7 +103,7 @@ const Login = () => {
           <div className="mt-6">
             <Link
               to="/"
-              className="flex items-center justify-center text-gray-600 hover:text-gray-900"
+              className="flex items-center justify-center text-gray-600 hover:text-primary-500 transition-colors font-medium"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
