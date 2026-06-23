@@ -44,7 +44,7 @@ router.post('/predict', upload.single('image'), async (req, res) => {
     }
 
     // Use absolute path to model file
-    const modelPath = path.resolve(__dirname, '../../resnet50_oral.pkl');
+    const modelPath = path.resolve(__dirname, '../../vit_b16_oral.pkl');
     const imagePath = req.file.path;
     
     // Verify model exists
