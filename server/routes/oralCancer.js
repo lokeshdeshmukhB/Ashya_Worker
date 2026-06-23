@@ -44,7 +44,7 @@ router.post('/predict', upload.single('image'), async (req, res) => {
     }
 
     // Use absolute path to model file
-    const modelPath = path.resolve(__dirname, '../../oral_cancer_model_windows.pkl');
+    const modelPath = path.resolve(__dirname, '../../resnet50_oral.pkl');
     const imagePath = req.file.path;
     
     // Verify model exists
@@ -158,7 +158,7 @@ router.post('/analyze-patient-image', protect, async (req, res) => {
     }
 
     // Use absolute path to model file
-    const modelPath = path.resolve(__dirname, '../../oral_cancer_model_windows.pkl');
+    const modelPath = path.resolve(__dirname, '../../resnet50_oral.pkl');
     
     // Verify model exists
     if (!fs.existsSync(modelPath)) {

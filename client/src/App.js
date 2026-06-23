@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 import PrivateRoute from './components/PrivateRoute';
+import Layout from './components/Layout';
 
 // Pages
 import Login from './pages/Login';
@@ -22,7 +23,7 @@ function App() {
     <AuthProvider>
       <SocketProvider>
         <Router>
-          <div className="min-h-screen bg-neutral-50">
+          <Layout>
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
@@ -54,6 +55,15 @@ function App() {
                   </PrivateRoute>
                 }
               />
+
+              <Route
+                path="/patient/:id/edit"
+                element={
+                  <PrivateRoute role="asha_worker">
+                    <PatientForm />
+                  </PrivateRoute>
+                }
+              />
               
               <Route
                 path="/patient/:id"
@@ -75,19 +85,19 @@ function App() {
               
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-            
-            <ToastContainer
-              position="top-right"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
-          </div>
+          </Layout>
+          
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </Router>
       </SocketProvider>
     </AuthProvider>

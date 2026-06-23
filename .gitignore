@@ -35,6 +35,7 @@ Thumbs.db
 *.swp
 *.swo
 *~
+.vs/
 
 # Testing
 coverage/
@@ -55,3 +56,7 @@ cancerenv/
 *.pth
 *.dll
 
+# Debug and Temp
+temp_plum/
+server/inspect_pkl.py
+server/test_mock.py

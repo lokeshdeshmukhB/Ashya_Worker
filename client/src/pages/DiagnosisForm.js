@@ -87,12 +87,15 @@ const DiagnosisForm = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link to={`/patient/${id}`} className="flex items-center text-primary-600 mb-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center text-gray-600 hover:text-gray-900 transition-colors mb-6"
+        >
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           Back
-        </Link>
+        </button>
 
         <div className="card mb-6">
           <h2 className="text-2xl font-bold mb-4">Create Diagnosis for {patient?.fullName}</h2>

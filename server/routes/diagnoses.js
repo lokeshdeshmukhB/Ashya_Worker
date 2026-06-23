@@ -47,8 +47,9 @@ router.post('/', [
     const diagnosis = await Diagnosis.create(diagnosisData);
 
     // Update patient with diagnosis and status
+    // Update patient with diagnosis and status
     patient.diagnosis = diagnosis._id;
-    patient.status = 'diagnosed';
+    patient.status = req.body.followUpRequired ? 'follow_up_required' : 'diagnosed';
     await patient.save();
 
     await diagnosis.populate('doctor', 'name email specialization hospital');
